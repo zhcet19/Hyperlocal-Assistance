@@ -1,0 +1,16 @@
+.trade-area-heading {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1%;
+}
+
+.trade-area {
+   
+margin-bottom:7%;
+position:sticky;
+}
+
+.tradeAreaborder{
+    border: 1px solid #BDBDBD;
+    opacity: 0.6;
+}
