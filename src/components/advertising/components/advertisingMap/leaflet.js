@@ -338,7 +338,7 @@ const Map = ({ setResponse, check,  markerObject, submit, markercenter, setCoord
   
                   
                 }
-                setnumberofIds(response.data.Female_count+response.data.Male_count);
+                setnumberofIds(Number(response.data.Female_count)+Number(response.data.Male_count));
                  
               }
               else if(iosuser==="NO")
@@ -358,7 +358,8 @@ const Map = ({ setResponse, check,  markerObject, submit, markercenter, setCoord
   
                   
                 }
-                setnumberofIds(response.data.Female_count+response.data.Male_count);
+                setnumberofIds(Number(response.data.Female_count)+Number(response.data.Male_count));
+                
               }
               else
               {
@@ -375,7 +376,8 @@ const Map = ({ setResponse, check,  markerObject, submit, markercenter, setCoord
   
                   
                 }
-                setnumberofIds(response.data.Female_count+response.data.Male_count);
+                setnumberofIds(Number(response.data.Female_count)+Number(response.data.Male_count));
+               
               }
            
              
