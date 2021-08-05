@@ -96,7 +96,10 @@ const Main = () => {
     const classes1 = useStyles1();
 
     //TradeArea
-    const [markerArr, setMarkerArr] = useState(null)
+    const [markerArr, setMarkerArr] = useState(null);
+    const [distanceArr,setdistanceArr] = useState(null);
+    const [cllgArr,setcllgArr] = useState(null);
+    const [shopperType,setshopperType] = useState(null);
 
     //MajorPathsTaken
     const [pathGeoJson, setPathGeoJson] = useState(null)
@@ -247,6 +250,10 @@ const Main = () => {
                 for (const object of response.data) {
                     if (object.name === inputPlace) {
                         setMarkerArr(object.homecoordinates)
+                        setcllgArr(object.collegestudent)
+                        setdistanceArr(object.Bin)
+                        setshopperType(object.shoppertype)
+                        
                         break;
                     }
                 }
@@ -439,7 +446,13 @@ const Main = () => {
 
                     <ProminentInterest male={male} female={female} Entertainment={Entertainment} visitors={visitors} shopping={shopping} travel={travel} inputPlace={inputPlace} />
 
-                    <TradeArea coord={coord} markerArr={markerArr} />
+                    <TradeArea 
+                    coord={coord} 
+                    markerArr={markerArr} 
+                    shopperType = {shopperType}
+                    cllgArr= {cllgArr}
+                    distanceArr={distanceArr}
+                    />
 
                     <MajorPathTaken markercoord={coord} pathGeoJson={pathGeoJson} />
                     

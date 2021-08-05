@@ -14,3 +14,23 @@ position:sticky;
     border: 1px solid #BDBDBD;
     opacity: 0.6;
 }
+.distance{
+    font-size: 18px;
+}
+
+.tradeareaSubmit{
+    margin-top: 18px;
+    margin-left: 0px !important;
+}
+
+.tradeareaborder{
+    border:1px solid #BDBDBD;
+	opacity: 0.6;
+}
+.sidedistancebox{
+    width: fit-content;
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    display: inline-block;
+}

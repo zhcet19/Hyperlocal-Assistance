@@ -10,6 +10,12 @@ import "leaflet-fullscreen/dist/leaflet.fullscreen.css"
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import { RadioGroup } from '@material-ui/core';
+import { Radio } from '@material-ui/core';
+import { FormLabel } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
+import { FormControlLabel } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import './tradearea.css'
 
@@ -25,7 +31,7 @@ L.Icon.Default.mergeOptions({
 });
 
 
-const TradeArea = ({ coord, markerArr }) => {
+const TradeArea = ({ coord, markerArr ,shopperType,cllgArr,distanceArr }) => {
 
     const Tooltipinfo = withStyles((theme) => ({
         tooltip: {
@@ -62,16 +68,138 @@ const TradeArea = ({ coord, markerArr }) => {
             ]
         }
     }
+    const [Dist, setDist] = useState(0);
+    const useStylesforslider = makeStyles({
+        root: {
+            height: 450
+        },
+    });
+    const classesforslider = useStylesforslider();
 
+    let marks = [];
+    marks.push({value:0 ,label: '0Km'});
+    marks.push({value:2 ,label : '2Km'});
+    marks.push({value:5, label: '5Km'});
+    marks.push({value:10, label: '10Km'});
+    marks.push({value:15, label: '10+ Km'});
+
+    const [value, setValue] = useState('College');
+    const [statement ,setstatement] = useState(<div>
+        <span style={{color:'blue'}}>College Students</span>
+        <br/>
+        <span style={{color:'red'}}>Non College Students</span>
+        </div>);
+    const handleChange = (event) => {
+        setstatement();
+        let stat;
+        if(event.target.value === 'College'){
+            stat = <div>
+                <span style={{color:'blue'}}>College Students</span>
+                <br/>
+                <span style={{color:'red'}}>Non College Students</span>
+            </div>
+        }
+        else{
+            stat = <div>
+                <span style={{color:'blue'}}>Premium Shopper</span>
+                <br/>
+                <span style={{color:'red'}}>Non Premuim Shopper</span>
+            </div>
+        }
+      setstatement(stat);
+      setValue(event.target.value);
+      
+    };
+    
 
     const ZOOM = 12
     const mapRef = useRef()
 
-    const fillOptions = { fillColor: 'red', fillOpacity: 0.7, color: 'red' }
+    const fillOptions = { fillColor: 'blue', fillOpacity: 0.7, color: 'blue' };
+    const fillOptions1 = { fillColor: 'red', fillOpacity: 0.7, color: 'red' };
 
+    const [ collegeArray,setcollegeArray ] = useState([]);
+    const [noncollegeArray,setnoncollegeArray] = useState([]);
+
+    const [premiumArray , setpremiumArray] = useState([]);
+    const [nonpremiumArray,setnonpremiumArray] = useState([]);
+
+    const [Arraytobemarkedblue , setArraytobemarkedblue] = useState([]);
+    const [Arraytobemarkedred , setArraytobemarkedred] = useState([]);
+    
+    
+    const onSubmit = (event) => {
+        
+        event.preventDefault();
+        if(markerArr  === null)
+        return;
+        setArraytobemarkedblue([]);
+        setArraytobemarkedred([]);
+        if(Dist > 10){
+            let temp = [];
+            let temp2 = [];
+            if(value === 'College'){
+                for(var i = 0;i<cllgArr.length;i++){
+                    if(cllgArr[i] === "YES"){
+                        temp.push(markerArr[i]);
+                    }
+                    else
+                    temp2.push(markerArr[i]);
+                }
+                setArraytobemarkedblue(temp);
+                setArraytobemarkedred(temp2);
+            }
+            else{
+                for(var i = 0;i<shopperType.length;i++){
+                    if(shopperType[i] === "Premium"){
+                        temp.push(markerArr[i]);
+                    }
+                    else
+                    temp2.push(markerArr[i]);
+                }
+                setArraytobemarkedblue(temp);
+                setArraytobemarkedred(temp2);
+            }
+            return;
+        }
+        let temp = [];
+        let temp2 =[];
+        if(value === 'College'){
+            for(var i = 0;i<cllgArr.length;i++){
+                if(Dist === distanceArr[i]){
+                    if(cllgArr[i] === "YES"){
+                        temp.push(markerArr[i]);
+                    }
+                    else
+                    temp2.push(markerArr[i]);
+                } 
+            }
+
+            setArraytobemarkedblue(temp);
+            setArraytobemarkedred(temp2);
+        }
+        else{
+            for(var i = 0;i<shopperType.length;i++){
+                if(Dist === distanceArr[i]){
+                    if(shopperType[i] === "Premium"){
+                        temp.push(markerArr[i]);
+                    }
+                    else
+                    temp2.push(markerArr[i]);
+                }
+                
+            }
+            setArraytobemarkedblue(temp);
+            setArraytobemarkedred(temp2);
+        }
+    }
+    
+    //Radio button logic starts here
+
+    
     return (
         <div className='trade-area'>
-
+            
             <div className='trade-area-heading'>
                 <div className='first-line'>
                     <div className='left'>
@@ -89,13 +217,22 @@ const TradeArea = ({ coord, markerArr }) => {
                             </p>
                         </Tooltipinfo>
                     </div>
-
+                    
                     <div className='right'>
                         <p className='date'></p><img className='icon' src="https://img.icons8.com/material/32/000000/sort-down--v1.png" />
                         <img src="https://img.icons8.com/windows/32/000000/share-2.png" className='icon' />
                         <img className='icon' src="https://img.icons8.com/windows/32/000000/download.png" />
                     </div>
+                    
                 </div>
+                <FormControl component="fieldset">
+                <FormLabel component="legend">Select</FormLabel>
+                <RadioGroup row aria-label="Type" name="shopper" value={value} onChange={handleChange}>
+                    <FormControlLabel value="College" control={<Radio />} label="College" />
+                    <FormControlLabel value="Premium" control={<Radio />} label="Premium" />
+                </RadioGroup>
+                </FormControl>
+                {statement}
             </div>
 
             <div className="city-App">
@@ -113,14 +250,39 @@ const TradeArea = ({ coord, markerArr }) => {
                         <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution} />
                         {coord ? <ReCenter center={[coord[0][1], coord[0][0]]} zoom={13} /> : null}
                         {coord ? <Marker position={[coord[0][1], coord[0][0]]}></Marker> : null}
-                        {markerArr ?
-                            markerArr.map(markercoord => (
-                                <Circle center={markercoord} radius={20} pathOptions={fillOptions} />
+                        {Arraytobemarkedblue ?
+                            Arraytobemarkedblue.map(markercoord => (
+                                <Circle 
+                                center={markercoord} 
+                                radius={20} 
+                                pathOptions={fillOptions} 
+                                />
+                            ))
 
+                            : null}
+                        {Arraytobemarkedred ?
+                            Arraytobemarkedred.map(markercoord => (
+                                <Circle 
+                                center={markercoord} 
+                                radius={20} 
+                                pathOptions={fillOptions1} 
+                                />
                             ))
 
                             : null}
                     </MapContainer>
+                    <div className="sidedistancebox">
+                    <p className='distance'>Distance</p>
+                    <div className={classesforslider.root}>
+                        <Slider onChange={(e,val)=> { setDist(val) } }  marks ={marks} min={0} max={15} defaultValue={0}
+                        valueLabelDisplay="auto" required
+                        orientation="vertical"
+                        />
+                    </div>
+                    <div className='submit tradeareaSubmit'>
+                        <button className='submit' onClick={onSubmit}>SUBMIT</button>
+                    </div>
+                    </div>
                 </header>
             </div>
         </div>
