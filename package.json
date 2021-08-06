@@ -1,6 +1,3 @@
-
-
-
 {
   "name": "unmazer1",
   "version": "0.1.0",
@@ -54,6 +51,7 @@
     "react-responsive-modal": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-scroll": "^1.8.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "slug": "^5.1.0",

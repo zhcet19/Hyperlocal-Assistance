@@ -85,7 +85,7 @@ const MajorPathTaken = ({ markercoord, pathGeoJson }) => {
 
 
     return (
-        <div className='major-paths-taken'>
+        <div id='section3' className='major-paths-taken'>
             <div className='trade-area-heading'>
                 <div className='first-line'>
                     <div className='left'>	

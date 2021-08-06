@@ -116,16 +116,13 @@ const COLOR_RANGE = [
            {
             marks.push({ value: i, label: `${i}AM` })
            }
-           else if(i==12)
-           {
-            marks.push({ value: i, label: `${i}Noon` })
-           }
+           
            else if(i>12)
            {
             marks.push({ value: i, label: `${i-12}PM` })
            }
     }
-
+    marks.push({value:12 , label: 'Noon'})
     const [longitude, setlongitude] = useState([])
     const [latitude, setlatitude] = useState([]);
 	
@@ -204,7 +201,7 @@ const COLOR_RANGE = [
             })
     }
     return (
-        <div className='area-busyness'>
+        <div id='section4' className='area-busyness'>
             <div className='area-busyness-heading'>
                 <div className='first-line'>
                     <div className='left'>
@@ -234,13 +231,13 @@ const COLOR_RANGE = [
             </div>
 
             <div className='select-hour'>
-                <p className='hour'>Hour :</p>
+                <p className='hour'>Hour:</p>
                 <div className={classesforslider.root}>
                     <Slider value={hour} onChange={(e, val) => { setHour(val) }} defaultValue={0} marks={marks} min={0}
                         max={23} valueLabelDisplay="auto" required />
                 </div>
                 <div className='submit areaBusynessSubmit'>
-                    <button className='submit' onClick={onSubmit}>SUBMIT</button>
+                    <button style={{marginRight:'16px'}} className='submit' onClick={onSubmit}>SUBMIT</button>
                 </div>
             </div>
 

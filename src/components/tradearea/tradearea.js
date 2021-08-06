@@ -71,7 +71,7 @@ const TradeArea = ({ coord, markerArr ,shopperType,cllgArr,distanceArr }) => {
     const [Dist, setDist] = useState(0);
     const useStylesforslider = makeStyles({
         root: {
-            height: 450
+            height: 400
         },
     });
     const classesforslider = useStylesforslider();
@@ -84,31 +84,9 @@ const TradeArea = ({ coord, markerArr ,shopperType,cllgArr,distanceArr }) => {
     marks.push({value:15, label: '10+ Km'});
 
     const [value, setValue] = useState('College');
-    const [statement ,setstatement] = useState(<div>
-        <span style={{color:'blue'}}>College Students</span>
-        <br/>
-        <span style={{color:'red'}}>Non College Students</span>
-        </div>);
+    
     const handleChange = (event) => {
-        setstatement();
-        let stat;
-        if(event.target.value === 'College'){
-            stat = <div>
-                <span style={{color:'blue'}}>College Students</span>
-                <br/>
-                <span style={{color:'red'}}>Non College Students</span>
-            </div>
-        }
-        else{
-            stat = <div>
-                <span style={{color:'blue'}}>Premium Shopper</span>
-                <br/>
-                <span style={{color:'red'}}>Non Premuim Shopper</span>
-            </div>
-        }
-      setstatement(stat);
-      setValue(event.target.value);
-      
+        setValue(event.target.value);
     };
     
 
@@ -117,13 +95,6 @@ const TradeArea = ({ coord, markerArr ,shopperType,cllgArr,distanceArr }) => {
 
     const fillOptions = { fillColor: 'blue', fillOpacity: 0.7, color: 'blue' };
     const fillOptions1 = { fillColor: 'red', fillOpacity: 0.7, color: 'red' };
-
-    const [ collegeArray,setcollegeArray ] = useState([]);
-    const [noncollegeArray,setnoncollegeArray] = useState([]);
-
-    const [premiumArray , setpremiumArray] = useState([]);
-    const [nonpremiumArray,setnonpremiumArray] = useState([]);
-
     const [Arraytobemarkedblue , setArraytobemarkedblue] = useState([]);
     const [Arraytobemarkedred , setArraytobemarkedred] = useState([]);
     
@@ -198,7 +169,7 @@ const TradeArea = ({ coord, markerArr ,shopperType,cllgArr,distanceArr }) => {
 
     
     return (
-        <div className='trade-area'>
+        <div id='section2' className='trade-area'>
             
             <div className='trade-area-heading'>
                 <div className='first-line'>
@@ -229,10 +200,13 @@ const TradeArea = ({ coord, markerArr ,shopperType,cllgArr,distanceArr }) => {
                 <FormLabel component="legend">Select</FormLabel>
                 <RadioGroup row aria-label="Type" name="shopper" value={value} onChange={handleChange}>
                     <FormControlLabel value="College" control={<Radio />} label="College" />
-                    <FormControlLabel value="Premium" control={<Radio />} label="Premium" />
+                    <FormControlLabel value="Premium" control={<Radio />} label="Premium Shopper" />
                 </RadioGroup>
                 </FormControl>
-                {statement}
+                <div>
+                <span style={{color:'blue', marginRight: '5px'}}>Yes</span>
+                <span style={{color:'red'}}>No</span>
+                </div>
             </div>
 
             <div className="city-App">

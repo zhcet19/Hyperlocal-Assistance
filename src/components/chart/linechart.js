@@ -63,7 +63,7 @@ const LineChart = ({ options, series }) => {
 
 
     return (
-        <div className='line-chart'>            
+        <div id='section1' className='line-chart'>            
             <Chart
                 options={options}
                 series={series}

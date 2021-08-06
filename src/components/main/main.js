@@ -342,7 +342,7 @@ const Main = () => {
     return (
         
         <div className='main'>
-            <SideBar />
+            <SideBar/>
 
             <div className='flex-column'>
                 <div className='center'>
