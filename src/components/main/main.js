@@ -42,7 +42,11 @@ const Main = () => {
     const[visitors,setvisitors]=useState(0);
     const[shopping,setshopping]=useState(0);
     const[travel,settravel]=useState(0);
-
+    const[Gaming,setGaming]=useState(0);
+    const[Sport_Enthusiast,setSport_Enthusiast]=useState(0);
+    const[Recent_International_Visit,setRecent_International_Visit]=useState(0);
+    const[ShopsOnline,setShopsOnline]=useState(0);
+    const[tourist,settourist]=useState(0);
 
 //Cross-Shopping
   const [prename,setprename]=useState([]);
@@ -228,6 +232,11 @@ const Main = () => {
                            setvisitors(object.Mall_Visitors);
                            setshopping(object.Shopping);
                            settravel(object.Travel);
+                           setGaming(object.Gaming);
+                           setSport_Enthusiast(object.Sport_Enthusiast);
+                           setRecent_International_Visit(object.Recent_International_Travel);
+                           setShopsOnline(object.Shops_Online);
+                           settourist(object.Tourist);
                             break;
                         }
                         
@@ -444,7 +453,8 @@ const Main = () => {
 
                     <LineChart options={options} series={series} />
 
-                    <ProminentInterest male={male} female={female} Entertainment={Entertainment} visitors={visitors} shopping={shopping} travel={travel} inputPlace={inputPlace} />
+                    <ProminentInterest male={male} female={female} Entertainment={Entertainment} visitors={visitors} shopping={shopping} travel={travel} inputPlace={inputPlace}
+                      Gaming={Gaming} Sport_Enthusiast={Sport_Enthusiast}  Recent_International_Visit={Recent_International_Visit} ShopsOnline={ShopsOnline} tourist={tourist}/>
 
                     <TradeArea 
                     coord={coord} 

@@ -4,7 +4,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-const ProminentInterest = ({ male,female,Entertainment,visitors,shopping,travel,inputPlace }) => {
+const ProminentInterest = ({ male,female,Entertainment,visitors,shopping,travel,inputPlace,Gaming,Sport_Enthusiast,Recent_International_Visit,ShopsOnline,tourist }) => {
 
  
 	
@@ -52,26 +52,24 @@ const ProminentInterest = ({ male,female,Entertainment,visitors,shopping,travel,
         <div className='heading'>
           <div className="heading-text-card1">Demographic</div>
           <div className='heading-text-card2'>Interest(%)</div>
-            </div>
+         </div>
       
         <div className='interest-cards'>
-          
-         {inputPlace === "Forum Mall" ?
-         <div className='number-visits'>
-            
-         <p>Male<h3 >&nbsp;{male}&nbsp;</h3></p>
-         <p>Female<h3 >&nbsp;{female}&nbsp;</h3></p>
-          <p>Frequent shoppers<h3 >&nbsp;43&nbsp;</h3></p>
-         <p>Premium shoppers<h3 >&nbsp;10&nbsp;</h3></p>  
-         <p>Thrifty shoppers<h3 >&nbsp;37&nbsp;</h3></p>
-         <p>College students<h3 >&nbsp;45&nbsp;</h3></p>
-         <p>Instagram users<h3 >&nbsp;57&nbsp;</h3></p>  </div>:
+      
+        
          <div className='number-visits'> 
          <p>Male<h3 >&nbsp;{male}&nbsp;</h3></p>
          <p>Female<h3 >&nbsp;{female}&nbsp;</h3></p>
-         </div>}
-         
-         
+         <p>Entertainment<h3 >&nbsp;{Entertainment}&nbsp;</h3></p>
+         <p>Mall Visitors<h3>&nbsp;{visitors}&nbsp;</h3></p>
+         <p>Shopping<h3>&nbsp;{shopping}&nbsp;</h3></p>
+         <p>Travel<h3>&nbsp;{travel}&nbsp;</h3></p>
+         <p>Gaming<h3>&nbsp;{Gaming}&nbsp;</h3></p>
+         <p>Sport Enthusiast<h3>&nbsp;{Sport_Enthusiast}&nbsp;</h3></p>
+         <p>Recent International Visits<h3>&nbsp;{Recent_International_Visit}&nbsp;</h3></p>
+         <p>Online Shoppers<h3>&nbsp;{ShopsOnline}&nbsp;</h3></p>
+         <p>Tourist<h3>&nbsp;{tourist}&nbsp;</h3></p></div>
+       
         </div>
       </div>
     </>
